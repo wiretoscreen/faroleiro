@@ -1,0 +1,82 @@
+name: Release on Main Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Determine new version and generate changelog
+        id: version
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"%h|%an|%s")
+            MAJOR=0
+            MINOR=0
+            PATCH=0
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "${LAST_TAG#v}"
+            COMMITS=$(git log $LAST_TAG..HEAD --pretty=format:"%h|%an|%s")
+          fi
+
+          INC_TYPE="patch"
+          CHANGELOG=""
+          while IFS='|' read -r HASH AUTHOR MSG; do
+            CHANGELOG+="- [$HASH] $MSG (by $AUTHOR)\n"
+            if [[ $MSG == *BREAKING:* ]]; then
+              INC_TYPE="major"
+            elif [[ $MSG == feat:* ]] && [[ $INC_TYPE != "major" ]]; then
+              INC_TYPE="minor"
+            fi
+          done <<< "$COMMITS"
+
+          if [ -z "$LAST_TAG" ]; then
+            if [[ $INC_TYPE == "major" ]]; then
+              NEW_TAG="v1.0.0"
+            elif [[ $INC_TYPE == "minor" ]]; then
+              NEW_TAG="v0.1.0"
+            else
+              NEW_TAG="v0.0.1"
+            fi
+          else
+            if [[ $INC_TYPE == "major" ]]; then
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+            elif [[ $INC_TYPE == "minor" ]]; then
+              MINOR=$((MINOR + 1))
+              PATCH=0
+            else
+              PATCH=$((PATCH + 1))
+            fi
+            NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+          fi
+
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo -e "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.new_tag }}
+          name: Release ${{ steps.version.outputs.new_tag }}
+          body: |
+            Automatic release from main push
+
+            **Changelog:**
+            ${{ steps.version.outputs.changelog }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
