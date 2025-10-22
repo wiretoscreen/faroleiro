@@ -1,15 +1,17 @@
 import modules.bulkdeleter
 import modules.bulkleaver
 import modules.bulkunrelationship
+import modules.bulkdmcloser
 import argparse, json, os
 
 cfg_path = "config.json"
-default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"]}
+default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "friendsignore": ["DMIds to Ignore"]}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--clear-messages", action="store_true", help="include message cleaning")
 parser.add_argument("--leave-guilds", action="store_true", help="include guilds cleaning")
-parser.add_argument("--remove-friends", action="store_true", help="include guilds cleaning")
+parser.add_argument("--remove-friends", action="store_true", help="include friends cleaning")
+parser.add_argument("--close-dms", action="store_true", help="include dms cleaning")
 
 args = parser.parse_args()
 
@@ -39,6 +41,12 @@ def checkArguments():
         modules.bulkunrelationship.run(
             token = cfg["token"],
             ignores = cfg["friendsignore"]
+        )
+    
+    if args.close_dms:
+        modules.bulkdmcloser.run(
+            token = cfg["token"],
+            ignores = cfg["dmsignore"]
         )
         
 def checkConfig():
