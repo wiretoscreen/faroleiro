@@ -1,2 +1,4 @@
 requests
 colorama
+pycryptodome
+qrcode_terminal

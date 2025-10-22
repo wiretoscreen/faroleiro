@@ -68,6 +68,7 @@ python3 main.py --help
 ```
 
 Available flags:
+- `--login` — starts qrcode login flow, sometimes returns captcha. Let's go gambling.
 - `--clear-messages` — run message clearing, subflags:
   - `--cm-content` — content to search & delete (do not include if you are going to delete everything)
   - `--cm-channel` — channel id
