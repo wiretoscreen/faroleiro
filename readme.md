@@ -69,7 +69,9 @@ python3 main.py --help
 ```
 
 Available flags:
-- `--clear-messages` — run message clearing flow (prompts for channel ID, content to match, and your user ID)
+- `--clear-messages` — run message clearing, subflags:
+  - `--cm-content` — content to search & delete (do not include if you are going to delete everything)
+  - `--cm-channel` — channel id
 - `--leave-guilds` — leave all guilds except those listed in `ignore`
 - `--remove-friends` — remove friends (except those in `friendsignore`)
 - `--close-dms` — close DMs (except those in `dmsignore`)
@@ -79,8 +81,12 @@ Example: leave guilds and remove friends:
 python3 main.py --leave-guilds --remove-friends
 ```
 
-Example: clear messages from a specific channel (interactive prompts will follow):
+Example: clear messages from a specific channel:
 ```bash
-python3 main.py --clear-messages
-# Then type Channel ID, Content to delete (leave blank to delete all), and your User ID when prompted.
+python3 main.py --clear-messages --cm-channel 012345678910
+```
+
+Example: clear messages from a specific channel with specific content:
+```bash
+python3 main.py --clear-messages --cm-channel 012345678910 --cm-content "foo"
 ```
