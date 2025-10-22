@@ -14,8 +14,6 @@
 
 ## ✶ Installation (from GitHub Releases)
 
-> Recommended: install the latest **release** from this repository rather than cloning the repo if you just want a runnable package.
-
 1. Open the repository Releases page (e.g. `https://github.com/wiretoscreen/Faroleiro/releases`) and download the latest release archive (`.zip` or `.tar.gz`).
 
 2. Extract the downloaded archive:
