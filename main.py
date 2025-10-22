@@ -5,7 +5,7 @@ import modules.bulkdmcloser
 import argparse, json, os
 
 cfg_path = "config.json"
-default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "friendsignore": ["DMIds to Ignore"]}
+default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "dmsignore": ["DMIds to Ignore"]}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--clear-messages", action="store_true", help="include message cleaning")
