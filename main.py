@@ -1,7 +1,7 @@
-import modules.bulkdeleter
-import modules.bulkleaver
-import modules.bulkunrelationship
-import modules.bulkdmcloser
+import modules.clear_messages
+import modules.clear_servers
+import modules.clear_friends
+import modules.clear_dms
 import modules.utils
 import argparse, json, os
 
@@ -30,7 +30,7 @@ def checkArguments():
 
         content = args.cm_content or ""
 
-        modules.bulkdeleter.run(
+        modules.clear_messages.run(
             token = cfg["token"],
             content = content,
             user_id = modules.utils.getUserID(cfg["token"]),
@@ -38,19 +38,19 @@ def checkArguments():
         )
     
     if args.leave_guilds:
-        modules.bulkleaver.run(
+        modules.clear_servers.run(
             token = cfg["token"],
             ignores = cfg["ignore"]
         )
     
     if args.remove_friends:
-        modules.bulkunrelationship.run(
+        modules.clear_friends.run(
             token = cfg["token"],
             ignores = cfg["friendsignore"]
         )
     
     if args.close_dms:
-        modules.bulkdmcloser.run(
+        modules.clear_dms.run(
             token = cfg["token"],
             ignores = cfg["dmsignore"]
         )
