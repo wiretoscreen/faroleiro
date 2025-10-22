@@ -74,6 +74,7 @@ Available flags:
 - `--leave-guilds` — leave all guilds except those listed in `ignore`
 - `--remove-friends` — remove friends (except those in `friendsignore`)
 - `--close-dms` — close DMs (except those in `dmsignore`)
+- `--clear-connections` — close DMs (except those in `connections`)
 
 Example: leave guilds and remove friends:
 ```bash

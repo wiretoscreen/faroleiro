@@ -14,7 +14,7 @@ parser.add_argument("--clear-messages", action="store_true", help="include messa
 parser.add_argument("--leave-guilds", action="store_true", help="include guilds cleaning") # Invokes Guild Leave Function
 parser.add_argument("--remove-friends", action="store_true", help="include friends cleaning") # Invokes Friends Remover Function
 parser.add_argument("--close-dms", action="store_true", help="include dms cleaning") # Invokes DM Closer Function
-parser.add_argument("--clear-connections", action="store_true", help="include dms cleaning") # Invokes Connection Remover Function
+parser.add_argument("--clear-connections", action="store_true", help="include connections cleaning") # Invokes Connection Remover Function
 
 parser.add_argument("--cm-content", type=str, help="message content to search on clear messages")
 parser.add_argument("--cm-channel", type=str, help="channel id to clear messages")
