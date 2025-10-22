@@ -55,7 +55,7 @@ When run for the first time the script will create a `config.json` with default 
 - `ignore`: list of guild IDs to skip when leaving guilds.
 - `friendsignore`: list of friend IDs to skip when removing friends.
 - `dmsignore`: list of DM IDs to skip when closing DMs.
-- `connectionsignore`: list of connection IDs to skip when closing DMs.
+- `connectionsignore`: list of connection IDs to skip when clearing connections.
 ---
 
 ## ✹ Usage
