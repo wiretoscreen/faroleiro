@@ -45,7 +45,8 @@ When run for the first time the script will create a `config.json` with default 
   "token": "YourDiscordAccountToken",
   "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"],
   "friendsignore": ["FriendIds to Ignore"],
-  "dmsignore": ["DMIds to Ignore"]
+  "dmsignore": ["DMIds to Ignore"],
+  "connectionsignore": ["connections types do ignore (consult readme.md for types)"]
 }
 ```
 
@@ -53,8 +54,8 @@ When run for the first time the script will create a `config.json` with default 
 - `token`: your Discord account token (dangerous to share — see warnings).
 - `ignore`: list of guild IDs to skip when leaving guilds.
 - `friendsignore`: list of friend IDs to skip when removing friends.
-- `dmsignore` (if present): list of DM IDs to skip when closing DMs.
-
+- `dmsignore`: list of DM IDs to skip when closing DMs.
+- `connectionsignore`: list of connection IDs to skip when closing DMs.
 ---
 
 ## ✹ Usage
