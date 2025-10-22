@@ -88,3 +88,42 @@ Example: clear messages from a specific channel with specific content:
 ```bash
 python3 main.py --clear-messages --cm-channel 012345678910 --cm-content "foo"
 ```
+
+---
+
+## ✶ Connections IDs
+
+> INFO: Use the ids in the clear connections function ignore list
+
+| ID                | Display Name                    |
+|--------------------|----------------------------------|
+| amazon-music       | Amazon Music                     |
+| battlenet          | Battle.net                       |
+| bluesky            | Bluesky                          |
+| bungie             | Bungie.net                        |
+| contacts           | Contact Sync                     |
+| crunchyroll        | Crunchyroll                      |
+| domain             | Domain                           |
+| ebay               | eBay                             |
+| epicgames          | Epic Games                       |
+| facebook           | Facebook                         |
+| github             | GitHub                           |
+| instagram          | Instagram                        |
+| leagueoflegends    | League of Legends                |
+| mastodon           | Mastodon                         |
+| paypal             | PayPal                           |
+| playstation        | PlayStation Network              |
+| playstation-stg    | PlayStation Network (Staging)    |
+| reddit             | Reddit                           |
+| roblox             | Roblox                           |
+| riotgames          | Riot Games                       |
+| samsung            | Samsung Galaxy                   |
+| soundcloud         | SoundCloud                       |
+| spotify            | Spotify                          |
+| skype              | Skype                            |
+| steam              | Steam                            |
+| tiktok             | TikTok                           |
+| twitch             | Twitch                           |
+| twitter            | Twitter                          |
+| xbox               | Xbox                             |
+| youtube            | YouTube                          |

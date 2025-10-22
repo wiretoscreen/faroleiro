@@ -1,3 +1,4 @@
+import modules.clear_connections
 import modules.clear_messages
 import modules.clear_servers
 import modules.clear_friends
@@ -6,13 +7,14 @@ import modules.utils
 import argparse, json, os
 
 cfg_path = "config.json"
-default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "dmsignore": ["DMIds to Ignore"]}
+default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "dmsignore": ["DMIds to Ignore"], "connectionsignore": ["connections types do ignore (consult readme.md for types)"]}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--clear-messages", action="store_true", help="include message cleaning") # Invokes Clear Messages Function
 parser.add_argument("--leave-guilds", action="store_true", help="include guilds cleaning") # Invokes Guild Leave Function
 parser.add_argument("--remove-friends", action="store_true", help="include friends cleaning") # Invokes Friends Remover Function
 parser.add_argument("--close-dms", action="store_true", help="include dms cleaning") # Invokes DM Closer Function
+parser.add_argument("--clear-connections", action="store_true", help="include dms cleaning") # Invokes Connection Remover Function
 
 parser.add_argument("--cm-content", type=str, help="message content to search on clear messages")
 parser.add_argument("--cm-channel", type=str, help="channel id to clear messages")
@@ -53,6 +55,12 @@ def checkArguments():
         modules.clear_dms.run(
             token = cfg["token"],
             ignores = cfg["dmsignore"]
+        )
+    
+    if args.clear_connections:
+        modules.clear_connections.run(
+            token = cfg["token"],
+            ignores = cfg["connectionsignore"]
         )
         
 def checkConfig():
