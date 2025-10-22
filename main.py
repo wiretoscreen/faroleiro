@@ -1,13 +1,15 @@
 import modules.bulkdeleter
 import modules.bulkleaver
+import modules.bulkunrelationship
 import argparse, json, os
 
 cfg_path = "config.json"
-default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"]}
+default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"]}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--clear-messages", action="store_true", help="include message cleaning")
 parser.add_argument("--leave-guilds", action="store_true", help="include guilds cleaning")
+parser.add_argument("--remove-friends", action="store_true", help="include guilds cleaning")
 
 args = parser.parse_args()
 
@@ -31,6 +33,12 @@ def checkArguments():
         modules.bulkleaver.run(
             token = cfg["token"],
             ignores = cfg["ignore"]
+        )
+    
+    if args.remove_friends:
+        modules.bulkunrelationship.run(
+            token = cfg["token"],
+            ignores = cfg["friendsignore"]
         )
         
 def checkConfig():

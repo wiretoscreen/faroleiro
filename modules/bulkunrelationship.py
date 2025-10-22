@@ -5,31 +5,27 @@ from colorama import Fore, init
 
 init(autoreset=True)
 
-def get_guilds(token):
-    return [g['id'] for g in requests.get("https://discord.com/api/v9/users/@me/guilds", headers={"authorization": token,         "User-Agent": "Discord-Android/126021"}).json()]
+def get_relationships(token):
+    return [g['id'] for g in requests.get("https://discord.com/api/v9/users/@me/relationships", headers={"authorization": token,         "User-Agent": "Discord-Android/126021"}).json()]
 
-def leave_all(token, ignores):
+def unfriend_all(token, ignores):
     headers = {
         "User-Agent": "Discord-Android/126021",
         "authorization": token
     }
 
-    for gid in get_guilds(token):
+    for uid in get_relationships(token):
         while True:
-            if gid in ignores:
+            if uid in ignores:
                 break
                 
             res = requests.delete(
-                f"https://discord.com/api/v9/users/@me/guilds/{gid}",
+                f"https://discord.com/api/v9/users/@me/relationships/{uid}",
                 headers=headers
             )
 
             if res.status_code == 204:
-                print(f"{Fore.RED}[LEAVE] {Fore.YELLOW}{gid}{Fore.RESET}")
-                break
-            
-            if res.status_code == 400:
-                print(f"{Fore.RED}[ERROR] {Fore.YELLOW}{gid}{Fore.RESET} - You probably have ownership of the Server")
+                print(f"{Fore.RED}[REMOVED] {Fore.YELLOW}{uid}{Fore.RESET}")
                 break
 
             elif res.status_code == 429:
@@ -42,9 +38,9 @@ def leave_all(token, ignores):
 
 
 def run(token, ignores):
-    """Executes the guild search and cleaning"""
+    """Executes the friend search and cleaning"""
     os.system('cls' if os.name == 'nt' else 'clear')
     print(f"{Fore.LIGHTBLUE_EX}FAROLEIRO ====================> {Fore.RESET}")
-    print("Leaving all Servers")
-    leave_all(token, ignores)
+    print("Removing all Friends")
+    unfriend_all(token, ignores)
     print(f"{Fore.GREEN}Finished.{Fore.RESET}")
