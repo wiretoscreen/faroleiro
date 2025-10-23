@@ -2,3 +2,4 @@ requests
 colorama
 pycryptodome
 qrcode_terminal
+websocket_client
