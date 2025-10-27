@@ -87,6 +87,7 @@ def on_message(ws, message):
             
             exit(print("[+] Logged in Successfully"))
 
+
 ws = websocket.WebSocketApp(
     "wss://remote-auth-gateway.discord.gg/?v=2",
     header={"Origin": "https://discord.com"},
