@@ -7,6 +7,7 @@ import modules.remote_auth
 import modules.utils
 import argparse, json, os
 
+
 cfg_path = "config.json"
 default_cfg = {"token": "YourDiscordAccountToken", "ignore": ["Array", "of", "guilds", "to", "ignore", "on", "guilds", "cleaner"], "friendsignore": ["FriendIds to Ignore"], "dmsignore": ["DMIds to Ignore"], "connectionsignore": ["connections types do ignore (consult readme.md for types)"]}
 
