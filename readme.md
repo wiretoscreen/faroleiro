@@ -1,3 +1,5 @@
+> ⚠️ Migrated to Codeberg (Github is a Mirror)
+
 # Faroleiro
 
 <div align="center">
